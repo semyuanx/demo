@@ -3,63 +3,74 @@ import { Link } from 'react-router';
 import { getAwardData } from '../../redux/action';
 import { connect } from 'react-redux';  //连接
 import './index.css';
-import { fail } from 'assert';
 
 //  倒计时
 class CountDown extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
-            countTime:0,
-            timer:null
+        this.state = {
+            countTime: 0,
+            timer: null
         }
     }
     render() {
-        var { time, date,timer } = this.props;    // 上期的时间戳
+        var { time, date, timer } = this.props;    // 上期的时间戳
         this.state.countTime = (time + 600) - parseInt(new Date().getTime() / 1000, 10); // 假设每10分钟开一次
         var hour = this.state.countTime < 0 ? 0 : parseInt(this.state.countTime / 60 / 60, 10),
             min = this.state.countTime < 0 ? 0 : parseInt(this.state.countTime / 60, 10),
             sec = this.state.countTime < 0 ? 0 : parseInt(this.state.countTime % 60, 10);
-        if(!this.state.timer && this.state.countTime >0){
+        if (!this.state.timer && this.state.countTime > 0) {
             this.countFn();
         }
-        console.log(this.state.countTime);
         return (
             <div className="conunt-down">
                 <p>第<b>{date ? date['expect'] : ''}</b>期&nbsp;离截止时间</p>
-                <div className="conunt-time">
-                    <span>{hour < 10 ? '0' + hour : hour}</span><b>:</b>
-                    <span>{min < 10 ? '0' + min : min}</span><b>:</b>
-                    <span>{sec < 10 ? '0' + sec : sec}</span>
-                </div>
+                {
+                    this.state.countTime > 0 ? (
+                        <div className="conunt-time">
+                            <span>{hour < 10 ? '0' + hour : hour}</span><b>:</b>
+                            <span>{min < 10 ? '0' + min : min}</span><b>:</b>
+                            <span>{sec < 10 ? '0' + sec : sec}</span>
+                        </div>
+                    ) : (
+                            <div className="conunt-time">
+                                <p>马上开奖</p>
+                            </div>
+                        )
+                }
             </div>
         )
     }
-    componentDidMount(){
-       this.countFn();
+    componentDidMount() {
+        this.countFn();
     }
-    countFn(){  // 倒计时
+    countFn() {  // 倒计时
         var self = this;
-        this.state.timer = setInterval(function(){
-            if(self.state.countTime > 0){
+        this.state.timer = setInterval(function () {
+            if (self.state.countTime > 0) {
                 self.setState({
-                    countTime: self.state.countTime --
+                    countTime: self.state.countTime--
                 })
-                 self.props.closeResetData();    // 关闭父组件循环读取数据
-            }else{
+                self.props.closeResetData();    // 关闭父组件循环读取数据
+            } else {
                 clearInterval(self.state.timer);
                 self.setState({
-                    timer:null,
-                    countTime:0
+                    timer: null,
+                    countTime: 0
                 })
-               
+
                 self.props.openResetData(true); //开启父组件循环读取数据
                 return false;
             }
-            
-        },1000)
+
+        }, 1000)
     }
-    
+    componentWillUnmount(){ //组件销毁时 移除定时器
+        if(this.state.timer){
+            clearInterval(this.state.timer);
+        }       
+    }
+
 }
 
 // 开奖号码
@@ -137,10 +148,11 @@ class Index extends Component {
         super(props);
         this.state = {
             time: 0,
-            resetDataTimer:'',
-            openResetTimer:false,
+            resetDataTimer: '',
+            openResetTimer: false,
             awardNum: {},
-            awardList: []
+            awardList: [],
+            _isMounted:true
         }
     }
     render() {
@@ -152,10 +164,10 @@ class Index extends Component {
             <div className="index">
                 <div className="w980 h130">
                     <div className="index-left fl">
-                        <CountDown closeResetData={ this.closeResetData.bind(this) } 
-                                   openResetData = {this.openResetData.bind(this)} 
-                                   date={award ? award[0] : ''} 
-                                   time={this.state.time}  />
+                        <CountDown closeResetData={this.closeResetData.bind(this)}
+                            openResetData={this.openResetData.bind(this)}
+                            date={award ? award[0] : ''}
+                            time={this.state.time} />
                     </div>
                     <div className="index-main fl">
                         <WinNumber award={this.state.awardNum} />
@@ -170,26 +182,33 @@ class Index extends Component {
     componentDidMount() {
         this.resetData();
     }
-    resetData(){ // 获取数据
+    resetData() { // 获取数据
+        if(this._isMounted){
+            return false;
+        }
         var { dispatch } = this.props;
         dispatch(getAwardData());   // 页面初始化数据
     }
-    closeResetData(){   // 子组件回调方法，关闭轮询获取数据
-        if(this.state.resetDataTimer){
+    closeResetData() {   // 子组件回调方法，关闭轮询获取数据
+        if (this.state.resetDataTimer) {
             clearInterval(this.state.resetDataTimer);
             this.setState({
-                resetDataTimer:null
+                resetDataTimer: null
             })
         }
     }
-    openResetData(val){ // 子组件回调方法，打开轮询获取数据
+    openResetData(val) { // 子组件回调方法，打开轮询获取数据
         this.loopResetData();
     }
-    loopResetData(){   // 轮询获取数据
+    loopResetData() {   // 轮询获取数据
         var self = this;
-        this.state.resetDataTimer =  setInterval(function(){
-                self.resetData();           
-        },5500) 
+        this.state.resetDataTimer = setInterval(function () {
+            self.resetData();
+        }, 6000)
+    }
+      
+    componentWillUnmount(){ //组件将被卸载时移除定时器
+        this.closeResetData()
     }
 }
 var store2props = function (store) {

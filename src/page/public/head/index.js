@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Link  } from 'react-router';
+import { Link,IndexLink  } from 'react-router';
 import './head.css'
 
 //  顶部
@@ -24,12 +24,13 @@ const Nav = (
     <div className="head-main">
         <div className="w980">
             <div className="logo">
-                <a href="/"><img src={ require('./img/logo.png') } /></a>
+                <IndexLink activeClassName="active" to="/"><img src={ require('./img/logo.png') } /></IndexLink>
             </div>
             <ul className="nav">
-                <li><a>我的账户</a></li>
-                <li><a>银行充提</a></li>
-                <li><a>投注记录</a></li>
+                <li><IndexLink activeClassName="active" to="/">查看开奖</IndexLink></li>
+                <li><Link activeClassName="active" to="/my-account">我的账户</Link></li>
+                <li><Link activeClassName="active" to="/recharge">银行充提</Link></li>
+                <li><Link activeClassName="active" to="/betting">投注记录</Link></li>
                 <li><a>账户报表</a></li>
                 <li><a>代理管理</a></li>
                 <li><a>优惠活动</a></li>

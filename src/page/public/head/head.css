@@ -63,3 +63,6 @@
     color: #ffffff;
     line-height: 1;
 }
+.nav li a.active{
+    color: red;
+}

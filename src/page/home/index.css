@@ -84,7 +84,7 @@ p.record-left{
     color: #000000;
 }
 .record-right{
-    width: 93px;
+    width: 95px;
     float: right;
 }
 .record-list{
@@ -113,4 +113,9 @@ p.record-left{
 }
 .border-right{
     right: 0;
+}
+.conunt-time>p{
+    line-height: 75px;
+    color: #000000;
+    font-size: 26px;
 }

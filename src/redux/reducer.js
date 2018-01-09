@@ -12,7 +12,7 @@ const  getAwardData = (state={award:{}},action)=>{
     }
 
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers({ // 连接reducer
     getAwardData
 })
 export default rootReducer;

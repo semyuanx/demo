@@ -17,10 +17,13 @@ export function getAwardData(){
                 callbackName: 'someOtherName'
             }))
             .end((err, response) => {
-                dispatch({
-                    type:"getAwards",
-                    award:response.body.data
-                })
+                if(response){
+                    dispatch({
+                        type:"getAwards",
+                        award:response.body.data
+                    })
+                }
+                
               })
     }
 }
