@@ -1,0 +1,116 @@
+.index{
+    height: 900px;
+    background: url(./img/background.jpg) no-repeat left top;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.index-left{
+    width: 285px;
+    height: 130px;
+}
+.index-main{
+    width: 450px;
+    height: 130px;
+}
+.index-right{
+    width: 240px;
+    height: 130px;
+}
+.conunt-down,.win-num{
+    padding:  15px 0;
+}
+.conunt-down p,.win-num p{
+    text-align: center;
+    color: #6f6e72;
+    font-size: 14px;
+}
+.conunt-down p b,.win-num p b{
+    font-weight: normal;
+    color: #f30000;
+    display: inline-block;
+    margin: 0 2px;
+}
+.conunt-time{
+    margin: 5px 0;
+    line-height: 1.5;
+    text-align: center;
+    color: #000000;
+    font-family: Arial;
+    font-size: 44px;
+}
+.conunt-time span,.conunt-time b{
+    display: inline-block;
+    margin: 0 2px;
+    vertical-align: middle;
+}
+.conunt-time b{
+    font-size: 27px;
+}
+.win-num{
+    height: 100px;
+    position: relative;
+}
+.win-num ul{
+    margin-top: 10px;
+    margin: 10px 0 0 40px;
+}
+.win-num li{
+    width: 61px;
+    height: 61px;
+    line-height: 61px;
+    float: left;
+    color: #000000;
+    font-weight: bold;
+    text-align: center;
+    font:32px/61px Arial;
+    margin-left: 12px;
+    background: url(./img/win-num.png) no-repeat left top;
+}
+.record{
+    padding: 15px 30px;
+}
+.record-title>p{
+    text-align: center
+}
+p.record-left{
+    color: #6f6e72;
+}
+.record-left{
+    width: 80px;
+    float: left;
+    text-align: center;
+    color: #000000;
+}
+.record-right{
+    width: 93px;
+    float: right;
+}
+.record-list{
+    width: 180px;
+    padding: 0 5px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #cbcbcb;
+    border-radius: 22px;
+    margin-top: 5px;
+}
+.record-right span{
+    display: inline-block;
+    padding: 0 2px;
+    color: #000000;
+}
+.border-left,.border-right{
+    position: absolute;
+    top: 20px;
+    width: 1px;
+    height: 90px;
+    background-color: #d2d2d2;
+}
+.border-left{
+    left: 0;
+}
+.border-right{
+    right: 0;
+}

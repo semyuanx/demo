@@ -1,0 +1,65 @@
+.head-top{
+    height: 31px;
+    color: #ffffff;
+    line-height: 31px;
+    background: url(./img/head-top.png) repeat-x top;
+}
+.head-top-left{
+    float: left;
+}
+.head-top-right{
+    float: right;
+}
+.head-top-right li{
+    float: left;
+    padding-left: 10px;
+    width: 80px;
+    text-align: center;
+}
+.head-top-right li.client{
+    background-image: url(./img/client.png);
+    background-repeat: no-repeat;
+    background-position: 0px 9px;
+}
+.head-top-right li.help{
+    background-image: url(./img/help.png);
+    background-repeat: no-repeat;
+    background-position: 10px 9px;
+}
+.head-top-right li.service{
+    padding-left: 15px;
+    margin-left: 5px;
+    background-image: url(./img/service.png);
+    background-repeat: no-repeat;
+    background-position: 0 5px;
+}
+.head-top-right a{
+    color: #ffffff;
+}
+.head-main{
+    border-top: 1px solid #12a2aa;
+    border-bottom: 2px solid #016167;
+    height: 63px;
+    background-color: #15b8c2;
+}
+.logo{
+    margin-top:9px; 
+    float: left;
+}
+.nav{
+    float: right;
+    margin-top: 25px;;
+}
+.nav li{
+    float: left;
+    padding: 0 15px;
+    border-left: 1px solid #8adce1;
+}
+.nav li:nth-child(1){
+    border-left-width: 0;
+}
+.nav li a{
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 1;
+}

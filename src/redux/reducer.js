@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';   // 合并 reducer
 
 
-// 获取页面数字
-const  getData = (state={data:null},action)=>{
+// 开奖页面数据
+const  getAwardData = (state={award:{}},action)=>{
         switch(action.type){
-            case "loading":
-                return Object.assign({},state,{data:action.data});
+            case "getAwards":
+                return Object.assign({},state,{award:action.award});
             default:
                 return state;
         }
@@ -13,6 +13,6 @@ const  getData = (state={data:null},action)=>{
 
 
 const rootReducer = combineReducers({
-    getData
+    getAwardData
 })
 export default rootReducer;

@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import Nav from './public/nav';
+import Head from './public/head/index';
 
 class App extends Component{
     constructor(props){
@@ -9,7 +9,7 @@ class App extends Component{
     render(){
         return (
             <div>
-                <Nav />
+                {/* <Head /> */}
                 { this.props.children }
             </div>
         )

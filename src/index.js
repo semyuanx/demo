@@ -5,11 +5,14 @@ import { createStore,applyMiddleware,compose } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './redux/reducer.js';
 import thunk from 'redux-thunk';
-// 组织 redux 中间件 
+import './reset.css';  //重置样式
+// 组织 reducer 中间件 
 const store = createStore(reducer,compose(
     applyMiddleware(thunk)
 ));
 
 ReactDOM.render(
-    <div>{routes }</div>      
+    <Provider store={store}>
+        {routes }
+    </Provider>   
     , document.getElementById('root'));
